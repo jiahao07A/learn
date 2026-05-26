@@ -3,7 +3,7 @@
 1. 本目录用于存放每次学习会话记录。
 2. 文件名必须为 `YYYY-MM-DD-sNN.md`，例如：`2026-05-24-s01.md`。
 3. 每次会话必须新增文件，不覆盖历史会话。
-4. 会前必须查阅 `user-profile.md`、`roadmap.md` 与最近 2 次会话记录。
+4. 会前必须查阅 `docs/learning/governance/user-profile.md`、`docs/learning/governance/roadmap.md` 与最近 2 次会话记录。
 5. 会中必须执行四步协议：`误区诊断`、`双层解释`、`限时练习`、`证据化复盘`。
 6. 会话模板字段需与 `AGENTS.md` 中“模板字段接口”保持一致：
    - `会话编号`
@@ -24,3 +24,6 @@
    - `B 迁移应用题`
    - `C 错误修复题`
 8. 若同一知识点连续两次错误率 `>=40%`，必须在会话内标记 `是否触发回退=是`，并关联修订说明。
+9. 会话中的 `关键证据编号` 必须可追溯到：
+   - `docs/learning/topics/<topic-slug>/evidence/`，或
+   - `workspace/practice/<topic-slug>/<YYYY-MM-DD-sNN>/`。

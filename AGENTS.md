@@ -65,23 +65,88 @@
 2. 关键术语首次出现时建议附英文括注（如“悬垂指针 dangling pointer”）。
 3. 避免只给结论，需明确“为什么这样做”。
 
+# 目录结构与内容归档规范（强制）
+
+## 1. 分层原则
+1. 学习体系必须拆分为“治理层 + 内容层”。
+2. 治理层用于追踪、决策、评估、复盘，不承载教学正文。
+3. 内容层用于教学大纲、知识点讲解、练习、项目与实操代码。
+
+## 2. 目录总览
+1. `docs/learning/governance`：治理文档目录。
+2. `docs/learning/syllabus`：全局教学大纲与阶段大纲目录。
+3. `docs/learning/topics`：按知识主题分层的教学内容目录。
+4. `docs/learning/projects`：阶段项目文档与里程碑证据目录。
+5. `workspace/practice`：用户实操代码沉淀目录。
+6. `workspace/projects`：项目代码沉淀目录。
+7. `docs/learning/sessions` 与 `docs/learning/reviews` 保留为过程记录目录。
+
+## 3. 强制命名规范
+1. 主题目录必须使用 `NN-slug` 英文命名（如 `01-c-basics`）。
+2. 阶段大纲文件必须使用 `NN-stage-name.md` 命名。
+3. 会话文件必须使用 `YYYY-MM-DD-sNN.md` 命名。
+4. 用户实操代码目录必须使用 `workspace/practice/<topic-slug>/<YYYY-MM-DD-sNN>/` 结构。
+5. A/B/C 练习代码文件建议命名为 `a-*.c`、`b-*.c`、`c-*.c`。
+
+## 4. 教学内容放置规则
+1. 全局教学大纲固定在 `docs/learning/syllabus/master-plan.md`。
+2. 阶段级大纲固定在 `docs/learning/syllabus/stages/`。
+3. 知识点讲解固定在 `docs/learning/topics/<topic-slug>/concepts/`。
+4. 每个主题必须包含：
+   - `overview.md`
+   - `concepts/`
+   - `exercises/`
+   - `code/`
+   - `evidence/`
+5. 主题学习顺序由 `overview.md` 维护，并与 `governance/roadmap.md` 联动。
+
+## 5. 练习与答案策略
+1. 练习代码必须随主题放置，不建设全局集中练习库。
+2. 题目与提示放在 `exercises/`，示例和骨架放在 `code/`。
+3. `exercises/` 文档仅允许包含“思路、提示、常见误区”，禁止提供完整标准答案代码。
+4. 会话中的 `关键证据编号` 必须可解析到 `topics/.../evidence` 或 `workspace/practice/...`。
+
+## 6. 项目归档规则
+1. 项目文档固定在 `docs/learning/projects/<project-slug>/`。
+2. 每个项目文档目录至少包含：
+   - `README.md`
+   - `milestones.md`
+   - `evidence.md`
+3. 项目代码固定在 `workspace/projects/<project-slug>/`。
+4. `evidence.md` 必须记录项目里程碑与会话证据关联。
+
+## 7. 治理文档路径（v1.2）
+1. `docs/learning/governance/index.md`
+2. `docs/learning/governance/roadmap.md`
+3. `docs/learning/governance/progress-matrix.md`
+4. `docs/learning/governance/user-profile.md`
+5. `docs/learning/governance/teaching-playbook.md`
+6. 会前必读路径改为：
+   - `docs/learning/governance/user-profile.md`
+   - `docs/learning/governance/roadmap.md`
+   - 最近 2 次 `docs/learning/sessions/*.md`
+
+## 8. 迁移与兼容
+1. 治理文档已迁移至 `docs/learning/governance`。
+2. 旧路径兼容说明保留一周，并记录在 `docs/learning/governance/index.md`。
+3. 一周后全部流程与引用仅允许使用新路径。
+
 # 学习治理规范（强制）
 
 ## 1. 文档体系与目录约定
-1. 学习治理文档统一存放于 `docs/learning`。
+1. 治理文档统一存放于 `docs/learning/governance`。
 2. 会话记录目录固定为 `docs/learning/sessions`。
 3. 周期复盘目录固定为 `docs/learning/reviews`。
-4. 除会话与复盘外的核心文档，统一存放于 `docs/learning` 根目录。
-5. 全部学习治理文档必须使用 Markdown（`.md`）格式，不引入 JSON 或数据库作为主数据源。
-6. 治理版本当前为 `v1.1`（复习策略优先、规范层渐进增强）。
+4. 全部学习治理文档必须使用 Markdown（`.md`）格式，不引入 JSON 或数据库作为主数据源。
+5. 治理版本当前为 `v1.2`（主题分层 + 练习随主题 + 治理分目录）。
 
 ## 2. 核心文档清单（必须存在）
 1. 首次进入学习任务前，AI 必须确保以下文档存在并具备模板骨架：
-   - `docs/learning/index.md`
-   - `docs/learning/user-profile.md`
-   - `docs/learning/roadmap.md`
-   - `docs/learning/progress-matrix.md`
-   - `docs/learning/teaching-playbook.md`
+   - `docs/learning/governance/index.md`
+   - `docs/learning/governance/user-profile.md`
+   - `docs/learning/governance/roadmap.md`
+   - `docs/learning/governance/progress-matrix.md`
+   - `docs/learning/governance/teaching-playbook.md`
 2. 若文档缺失，必须先补齐模板再继续教学内容输出。
 3. 禁止在无核心文档骨架的情况下直接进入会话教学。
 
@@ -92,33 +157,36 @@
 4. 会话记录不允许只写结果结论，必须附可追溯证据描述（练习结果、问答表现或代码表现）。
 
 ## 4. 进展规划规范
-1. `roadmap.md` 必须维护“主线目标 + 复习目标”双线推进。
-2. `roadmap.md` 必须维护：阶段目标、阶段进入条件、完成判据、风险项、预计会话数、当前状态、复习债务上限、当前复习债务、阶段复习退出标准。
-3. `progress-matrix.md` 必须维护：知识点熟练度等级（`0-5`）、最近证据、最近错误率、下次复习日、复习优先级、阻塞原因、下一步动作。
+1. `docs/learning/governance/roadmap.md` 必须维护“主线目标 + 复习目标”双线推进。
+2. `docs/learning/governance/roadmap.md` 必须维护：阶段目标、阶段进入条件、完成判据、风险项、预计会话数、当前状态、复习债务上限、当前复习债务、阶段复习退出标准。
+3. `docs/learning/governance/progress-matrix.md` 必须维护：知识点熟练度等级（`0-5`）、最近证据、最近错误率、下次复习日、复习优先级、阻塞原因、下一步动作。
 4. 每次会话结束后，至少更新一个知识点条目与一项路线图状态。
 5. 当学习状态发生变化（提升或回退）时，必须体现为等级变动并附证据来源。
 
 ## 5. 个性化画像规范
-1. `user-profile.md` 必须持续维护以下维度：偏好、困难点、触发条件、有效讲法、无效讲法、沟通禁忌、证据链接、最后更新时间。
+1. `docs/learning/governance/user-profile.md` 必须持续维护以下维度：偏好、困难点、触发条件、有效讲法、无效讲法、沟通禁忌、证据链接、最后更新时间。
 2. 所有画像结论必须可追溯到至少一个会话证据，不允许主观臆断。
 3. 出现新偏好或旧偏好失效时，必须写入修订条目并记录变更日期。
 4. 画像更新优先服务于下一次教学策略调整，不得只做静态归档。
 
 ## 6. 教学改进经验库规范
-1. `teaching-playbook.md` 采用条目制，固定链路为：问题场景 -> 采用策略 -> 用户反馈 -> 效果评级 -> 是否复用。
+1. `docs/learning/governance/teaching-playbook.md` 采用条目制，固定链路为：问题场景 -> 采用策略 -> 用户反馈 -> 效果评级 -> 是否复用。
 2. 每条经验必须关联来源会话，禁止写“无来源经验”。
 3. 条目必须补充“适用前提”和“失效信号”，避免盲目复用。
 4. 对高效果策略（稳定评分 `4/5` 及以上）应标记为优先复用策略。
 5. 对低效果策略（评分 `2/5` 及以下）应标记限制条件或停用建议。
 
 ## 7. 强制更新流程
-1. 会前必读：`user-profile.md`、`roadmap.md`、最近 2 次会话记录。
+1. 会前必读：
+   - `docs/learning/governance/user-profile.md`
+   - `docs/learning/governance/roadmap.md`
+   - 最近 2 次会话记录
 2. 会中要求：按“误区诊断 -> 双层解释 -> 限时练习 -> 证据化复盘”推进，并实时记录关键观察点。
 3. 会后必更：
    - 新增本次会话记录；
-   - 更新 `progress-matrix.md`；
-   - 更新 `roadmap.md` 下一步；
-   - 如有新证据，更新 `user-profile.md` 与 `teaching-playbook.md`。
+   - 更新 `docs/learning/governance/progress-matrix.md`；
+   - 更新 `docs/learning/governance/roadmap.md` 下一步；
+   - 如有新证据，更新 `docs/learning/governance/user-profile.md` 与 `docs/learning/governance/teaching-playbook.md`。
 4. 未完成会后更新前，不得推进下一主题学习。
 
 ## 8. 质量门禁与一致性
@@ -150,7 +218,7 @@
    - 中低优先复习项可并行安排，但必须写入会后计划。
 5. 学习回退规则：
    - 连续两次会话同一知识点错误率 `>=40%`，掌握度至少下调 1 级；
-   - 必须在 `progress-matrix.md` 与会话记录中写明“修订说明”。
+   - 必须在 `docs/learning/governance/progress-matrix.md` 与会话记录中写明“修订说明”。
 6. 阶段门禁：
    - 每阶段默认 `复习债务上限=3`（高优先未完成项数量）；
    - 超限时禁止进入下一阶段。
@@ -173,7 +241,7 @@
    - `关键证据编号`
    - `是否触发回退`
    - `下节计划`
-2. `progress-matrix.md` 条目字段：
+2. `progress-matrix` 条目字段：
    - `知识点`
    - `当前等级(0-5)`
    - `最近证据`
@@ -182,7 +250,7 @@
    - `复习优先级`
    - `阻塞原因`
    - `下一步动作`
-3. `roadmap.md` 阶段字段：
+3. `roadmap` 阶段字段：
    - `阶段名`
    - `主线目标`
    - `复习目标`
@@ -194,13 +262,13 @@
    - `风险项`
    - `预计会话数`
    - `当前状态`
-4. `user-profile.md` 偏好字段：
+4. `user-profile` 偏好字段：
    - `偏好/需求`
    - `适用场景`
    - `反例禁忌`
    - `证据会话`
    - `置信度`
-5. `teaching-playbook.md` 经验字段：
+5. `teaching-playbook` 经验字段：
    - `教学问题`
    - `策略`
    - `执行方式`
@@ -217,10 +285,10 @@
    - 每个文件的一句话关键变化说明。
 3. 若本次会话无文档更新，必须明确说明原因并标记为异常流程。
 
-## v1.1 验证清单（执行时必查）
-1. 迁移一致性测试：检查掌握度字段均切换为 `0-5`，且历史分值迁移有修订记录。
-2. 高优先门禁测试：构造“错误率高 + 间隔超期”条目，验证会话计划被复习任务阻断且不推进新主题。
-3. 半强制并行测试：构造中优先复习项，验证允许新主题并行，但会后记录必须包含复习安排。
-4. 回退机制测试：同一知识点连续两次错误率 `>=40%`，验证掌握度下调、修订说明留痕、路线图风险项更新。
-5. 练习结构测试：抽查任意 3 次会话，确认均包含 `A/B/C` 三段练习与证据。
-6. 项目里程碑测试：抽查阶段项目记录，确认 `M1/M2/M3` 三个里程碑均有验收结论与证据链接。
+## v1.2 验证清单（执行时必查）
+1. 结构测试：验证 `governance/syllabus/topics/projects/workspace` 目录存在且职责清晰。
+2. 路径一致性测试：检查 `AGENTS.md` 与治理文档引用路径均使用 `docs/learning/governance`。
+3. 主题闭环测试：任选一个主题，确认具备 `overview/concepts/exercises/code/evidence` 全套结构。
+4. 练习策略测试：抽查 `exercises` 文档，不含完整答案代码，仅有思路、提示、常见误区。
+5. 实操沉淀测试：抽查 `workspace/practice/<topic>/<date-session>/`，确认 A/B/C 文件命名可关联会话证据。
+6. 项目验收测试：抽查项目目录，确认 `README/milestones/evidence` 覆盖 `M1/M2/M3` 与证据链接。

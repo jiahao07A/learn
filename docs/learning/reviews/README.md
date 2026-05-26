@@ -4,9 +4,9 @@
 2. 复盘文档建议命名：`YYYY-Www-review.md`（例如：`2026-W21-review.md`）。
 3. 复盘内容至少包含：
    - 本周期学习主题摘要；
-   - 掌握度变化（引用 `progress-matrix.md`）；
+   - 掌握度变化（引用 `docs/learning/governance/progress-matrix.md`）；
    - 复习优先级变化与复习债务变化；
-   - 有效/低效教学策略变化（引用 `teaching-playbook.md`）；
+   - 有效/低效教学策略变化（引用 `docs/learning/governance/teaching-playbook.md`）；
    - 下周期目标与风险控制。
 4. 复盘必须显式核验以下测试场景（可摘要说明）：
    - 掌握度量表是否统一为 `0-5`；
